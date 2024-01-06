@@ -1,0 +1,81 @@
+@import "../../../styles.scss";
+
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  row-gap: 24px;
+  column-gap: 24px;
+  margin: 40px 0;
+
+  .card {
+    padding: 28px 20px;
+    text-align: center;
+
+    .card-wrapper {
+      display: flex;
+      justify-content: space-around;
+      column-gap: 32px;
+      margin-bottom: 32px;
+
+      .image {
+        img {
+          display: block;
+          width: 100%;
+          max-width: 250px;
+          height: auto;
+        }
+      }
+
+      .info {
+        h3 {
+          margin: 20px 0;
+          font-size: 24px;
+          letter-spacing: 1px;
+        }
+
+        p {
+          width: fit-content;
+          margin: 0 0 8px auto;
+          padding: 6px 24px;
+          background-color: $gray;
+          color: $black;
+          font-size: 14px;
+          letter-spacing: 2px;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  @media screen and (min-width: 992px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  @media screen and (min-width: 1200px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  @media screen and (min-width: 1500px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  column-gap: 8px;
+  justify-content: center;
+  margin-bottom: 40px;
+
+  .button {
+    width: 150px;
+  }
+}
