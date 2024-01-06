@@ -24,13 +24,18 @@
   }
 
   form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 12px;
+    column-gap: 12px;
+
     input {
       height: 30px;
       width: 300px;
       padding: 4px 12px;
-      margin-right: 12px;
       border: none;
-      border-radius: 50px;
+      border-radius: 4px;
     }
 
     .button {
@@ -43,6 +48,10 @@
       &:hover {
         background-color: $white;
       }
+    }
+
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
     }
   }
 }
