@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
+import { DetailsPageComponent } from './components/details-page/details-page.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { PokemonListComponent } from './components/pokemon-list/pokemon-list.com
     TopBannerComponent,
     FooterComponent,
     PokemonListComponent,
+    DetailsPageComponent,
   ],
   imports: [
     BrowserModule,
