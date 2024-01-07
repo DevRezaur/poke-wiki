@@ -1,137 +1,35 @@
 <div class="section">
   <h2>All Pokemons</h2>
   <div class="grid-wrapper">
-    <div class="card shadow">
+    <div class="card shadow" *ngFor="let pokemon of pokemonDetails">
       <div class="card-wrapper">
         <div class="image">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-            alt=""
-          />
+          <img [src]="pokemon.sprites.other.dream_world.front_default" alt="" />
         </div>
         <div class="info">
-          <h3>Bulbasaur</h3>
-          <p>grass</p>
-          <p>poison</p>
-        </div>
-      </div>
-      <button class="button">See Details</button>
-    </div>
-    <div class="card shadow">
-      <div class="card-wrapper">
-        <div class="image">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-            alt=""
-          />
-        </div>
-        <div class="info">
-          <h3>Bulbasaur</h3>
-          <p>grass</p>
-          <p>poison</p>
-        </div>
-      </div>
-      <button class="button">See Details</button>
-    </div>
-    <div class="card shadow">
-      <div class="card-wrapper">
-        <div class="image">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-            alt=""
-          />
-        </div>
-        <div class="info">
-          <h3>Bulbasaur</h3>
-          <p>grass</p>
-          <p>poison</p>
-        </div>
-      </div>
-      <button class="button">See Details</button>
-    </div>
-    <div class="card shadow">
-      <div class="card-wrapper">
-        <div class="image">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-            alt=""
-          />
-        </div>
-        <div class="info">
-          <h3>Bulbasaur</h3>
-          <p>grass</p>
-          <p>poison</p>
-        </div>
-      </div>
-      <button class="button">See Details</button>
-    </div>
-    <div class="card shadow">
-      <div class="card-wrapper">
-        <div class="image">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-            alt=""
-          />
-        </div>
-        <div class="info">
-          <h3>Bulbasaur</h3>
-          <p>grass</p>
-          <p>poison</p>
-        </div>
-      </div>
-      <button class="button">See Details</button>
-    </div>
-    <div class="card shadow">
-      <div class="card-wrapper">
-        <div class="image">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-            alt=""
-          />
-        </div>
-        <div class="info">
-          <h3>Bulbasaur</h3>
-          <p>grass</p>
-          <p>poison</p>
-        </div>
-      </div>
-      <button class="button">See Details</button>
-    </div>
-    <div class="card shadow">
-      <div class="card-wrapper">
-        <div class="image">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-            alt=""
-          />
-        </div>
-        <div class="info">
-          <h3>Bulbasaur</h3>
-          <p>grass</p>
-          <p>poison</p>
-        </div>
-      </div>
-      <button class="button">See Details</button>
-    </div>
-    <div class="card shadow">
-      <div class="card-wrapper">
-        <div class="image">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-            alt=""
-          />
-        </div>
-        <div class="info">
-          <h3>Bulbasaur</h3>
-          <p>grass</p>
-          <p>poison</p>
+          <h3>{{ pokemon.name }}</h3>
+          <div *ngFor="let types of pokemon.types">
+            <p>{{ types.type.name }}</p>
+          </div>
         </div>
       </div>
       <button class="button">See Details</button>
     </div>
   </div>
   <div class="button-wrapper">
-    <button class="button">Previous Page</button>
-    <button class="button">Next Page</button>
+    <button
+      class="button"
+      [disabled]="currentPageNo == 0"
+      (click)="loadPreviousPage()"
+    >
+      Previous Page
+    </button>
+    <button
+      class="button"
+      [disabled]="currentPageNo == 65"
+      (click)="loadNextPage()"
+    >
+      Next Page
+    </button>
   </div>
 </div>
