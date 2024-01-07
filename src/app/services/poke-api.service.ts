@@ -29,13 +29,13 @@ export class PokeApiService {
   }
 
   fetchPokemonDetails(pokemonList: any): any {
-    const observables = pokemonList.map((pokemon: any) =>
+    const observables$ = pokemonList.map((pokemon: any) =>
       this.fetchIndividualPokemonDetails(pokemon.url).pipe(
         map((result) => ({ ...pokemon, ...result }))
       )
     );
 
-    return forkJoin(observables);
+    return forkJoin(observables$);
   }
 
   fetchIndividualPokemonDetails(url: string): Observable<any> {

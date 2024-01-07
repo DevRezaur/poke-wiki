@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeApiService } from '../../services/poke-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SharedDataService } from '../../services/shared-data.service';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -13,6 +14,7 @@ export class PokemonListComponent implements OnInit {
 
   constructor(
     private pokeApiService: PokeApiService,
+    private sharedDataService: SharedDataService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -50,5 +52,10 @@ export class PokemonListComponent implements OnInit {
         queryParams: { page: ++this.currentPageNo },
       })
       .finally(() => this.loadPokemonDetails());
+  }
+
+  viewDetails(pokemon: any): void {
+    this.sharedDataService.sendData(pokemon);
+    this.router.navigate(['/pokemon-details']);
   }
 }
