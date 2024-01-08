@@ -1,6 +1,6 @@
 # Poke-Wiki: Wikipedia for Pokemons
 
-Simple pokemon wikipedia application using the popular https://pokeapi.co API.
+Pokemon wikipedia application using the popular https://pokeapi.co API.
 
 ---
 
