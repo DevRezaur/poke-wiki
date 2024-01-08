@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-top-banner',
@@ -9,13 +10,21 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class TopBannerComponent {
   searchForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
     this.searchForm = this.formBuilder.group({
-      searchTerm: [''],
+      searchTerm: ['', [Validators.required]],
     });
   }
 
   search(): void {
-    alert(this.searchForm.get('searchTerm')?.value);
+    if (this.searchForm.valid) {
+      this.router
+        .navigate(['/pokemon-list'], {
+          queryParams: { pokemon: this.searchForm.get('searchTerm')?.value },
+        })
+        .finally(() => {
+          this.searchForm.get('searchTerm')?.setValue('');
+        });
+    }
   }
 }

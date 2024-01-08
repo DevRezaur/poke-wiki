@@ -2,13 +2,13 @@
   <h1>Poke-Wiki</h1>
   <h3>Wikipedia for Pokemons</h3>
 
-  <form [formGroup]="searchForm">
+  <form [formGroup]="searchForm" (ngSubmit)="search()">
     <input
       type="text"
       placeholder="Type Pokemon Name"
       id="searchTerm"
       formControlName="searchTerm"
     />
-    <button class="button" (click)="search()">Search</button>
+    <button class="button">Search</button>
   </form>
 </div>

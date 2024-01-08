@@ -17,7 +17,7 @@ export class PokeApiService {
       switchMap((result) =>
         forkJoin(
           result.results.map((pokemon: any) =>
-            this.fetchIndividualPokemonDetails(pokemon.url)
+            this.fetchIndividualPokemonDetailsByUrl(pokemon.url)
           )
         )
       )
@@ -28,17 +28,12 @@ export class PokeApiService {
     return this.httpClient.get<any>(url);
   }
 
-  fetchPokemonDetails(pokemonList: any): any {
-    const observables$ = pokemonList.map((pokemon: any) =>
-      this.fetchIndividualPokemonDetails(pokemon.url).pipe(
-        map((result) => ({ ...pokemon, ...result }))
-      )
-    );
-
-    return forkJoin(observables$);
+  fetchIndividualPokemonDetailsByName(name: string): Observable<any> {
+    const url = `${this.baseUrl}/${name}`;
+    return this.fetchIndividualPokemonDetailsByUrl(url);
   }
 
-  fetchIndividualPokemonDetails(url: string): Observable<any> {
+  fetchIndividualPokemonDetailsByUrl(url: string): Observable<any> {
     return this.httpClient.get<any>(url);
   }
 }

@@ -10,7 +10,7 @@ import { SharedDataService } from '../../services/shared-data.service';
 })
 export class PokemonListComponent implements OnInit {
   currentPageNo: number;
-  pokemonDetails: any;
+  pokemonDetails: any[];
 
   constructor(
     private pokeApiService: PokeApiService,
@@ -23,15 +23,29 @@ export class PokemonListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setCurrentPageNo();
-    this.loadPokemonDetails();
+    this.route.queryParamMap.subscribe((params: any) => {
+      if (params.has('pokemon')) {
+        this.loadSinglePokemonDetails(params.get('pokemon'));
+      } else {
+        this.setCurrentPageNo(params);
+        this.loadAllPokemonDetails();
+      }
+    });
   }
 
-  setCurrentPageNo(): void {
-    this.currentPageNo = this.route.snapshot.queryParams['page'] || 0;
+  setCurrentPageNo(params: any): void {
+    this.currentPageNo = params.has('page') ? params.get('page') : 0;
   }
 
-  loadPokemonDetails(): void {
+  loadSinglePokemonDetails(name: string) {
+    this.pokeApiService.fetchIndividualPokemonDetailsByName(name).subscribe({
+      next: (result) =>
+        this.pokemonDetails.splice(0, this.pokemonDetails.length, result),
+      error: (error) => console.error(error),
+    });
+  }
+
+  loadAllPokemonDetails(): void {
     this.pokeApiService.getPokemonDetails(this.currentPageNo).subscribe({
       next: (result) => (this.pokemonDetails = result),
       error: (error) => console.error(error),
@@ -39,19 +53,15 @@ export class PokemonListComponent implements OnInit {
   }
 
   loadPreviousPage(): void {
-    this.router
-      .navigate(['/pokemon-list'], {
-        queryParams: { page: --this.currentPageNo },
-      })
-      .finally(() => this.loadPokemonDetails());
+    this.router.navigate(['/pokemon-list'], {
+      queryParams: { page: --this.currentPageNo },
+    });
   }
 
   loadNextPage(): void {
-    this.router
-      .navigate(['/pokemon-list'], {
-        queryParams: { page: ++this.currentPageNo },
-      })
-      .finally(() => this.loadPokemonDetails());
+    this.router.navigate(['/pokemon-list'], {
+      queryParams: { page: ++this.currentPageNo },
+    });
   }
 
   viewDetails(pokemon: any): void {
