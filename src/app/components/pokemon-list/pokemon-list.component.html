@@ -34,4 +34,8 @@
       Next Page
     </button>
   </div>
+  <div class="not-found" *ngIf="pokemonList.length === 0">
+    <img src="../../../assets/not_found.svg" alt="Not Found" />
+    <p>No Pokemon Found!</p>
+  </div>
 </div>

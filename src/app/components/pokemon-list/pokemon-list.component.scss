@@ -67,6 +67,16 @@ h2 {
   }
 }
 
+.not-found {
+  text-align: center;
+
+  img {
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 30px;
+  }
+}
+
 /* Media Queries */
 @media screen and (min-width: 768px) {
   .grid-wrapper {

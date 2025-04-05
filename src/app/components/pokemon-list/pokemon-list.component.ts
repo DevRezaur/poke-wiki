@@ -33,11 +33,14 @@ export class PokemonListComponent implements OnInit {
   }
 
   loadSinglePokemonDetails(name: string) {
-    this.pokeApiService
-      .fetchIndividualPokemonDetailsByName(name)
-      .subscribe((result) =>
-        this.pokemonList.splice(0, this.pokemonList.length, result)
-      );
+    this.pokeApiService.fetchIndividualPokemonDetailsByName(name).subscribe({
+      next: (result) => {
+        this.pokemonList.splice(0, this.pokemonList.length, result);
+      },
+      error: (error) => {
+        this.pokemonList = [];
+      },
+    });
   }
 
   loadAllPokemonDetails(): void {
