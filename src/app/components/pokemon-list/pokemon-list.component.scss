@@ -29,7 +29,7 @@ h2 {
         img {
           display: block;
           width: 100%;
-          max-width: 150px;
+          max-width: 100px;
           height: auto;
         }
       }
@@ -87,19 +87,12 @@ h2 {
 
 @media screen and (min-width: 992px) {
   .grid-wrapper {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .grid-wrapper {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
   }
 }
 
-@media screen and (min-width: 1500px) {
+@media screen and (min-width: 1200px) {
   .grid-wrapper {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
