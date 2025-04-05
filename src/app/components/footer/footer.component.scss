@@ -1,4 +1,4 @@
-@import "../../../styles.scss";
+@use "../../../styles";
 
 footer {
   height: 60px;
@@ -7,6 +7,6 @@ footer {
   align-items: center;
   font-size: 16px;
   letter-spacing: 2px;
-  background-color: $primary;
-  color: $white;
+  background-color: styles.$primary;
+  color: styles.$white;
 }

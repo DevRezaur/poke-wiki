@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PokeApiService } from '../../services/poke-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PokeApiService } from '../../services/poke-api.service';
 import { SharedDataService } from '../../services/shared-data.service';
 
 @Component({
+  standalone: false,
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
   styleUrl: './pokemon-list.component.scss',

@@ -1,9 +1,9 @@
-@import "../../../styles.scss";
+@use "../../../styles";
 
 .details-section {
   margin: 40px 0;
   padding: 40px;
-  background-color: $off-white;
+  background-color: styles.$off-white;
 
   .grid-wrapper {
     display: grid;
@@ -30,8 +30,8 @@
         p {
           width: fit-content;
           padding: 6px 24px;
-          background-color: $primary;
-          color: $white;
+          background-color: styles.$primary;
+          color: styles.$white;
           font-size: 14px;
           letter-spacing: 2px;
           border-radius: 4px;
@@ -55,8 +55,8 @@
         font-size: 24px;
         letter-spacing: 1px;
         padding: 4px 16px;
-        background-color: $primary;
-        color: $white;
+        background-color: styles.$primary;
+        color: styles.$white;
         border-radius: 4px;
       }
 
@@ -72,8 +72,8 @@
         margin-right: 30px;
         font-weight: 500;
         letter-spacing: 1px;
-        background-color: $gray;
-        color: $black;
+        background-color: styles.$gray;
+        color: styles.$black;
         border-radius: 4px;
       }
     }
@@ -105,7 +105,7 @@
 
     .card {
       padding: 20px;
-      background-color: $off-white;
+      background-color: styles.$off-white;
 
       img {
         display: block;

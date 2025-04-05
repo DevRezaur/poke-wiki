@@ -1,4 +1,4 @@
-@import "../../../styles.scss";
+@use "../../../styles";
 
 h2 {
   margin-top: 30px;
@@ -17,7 +17,7 @@ h2 {
   .card {
     padding: 28px 20px;
     text-align: center;
-    background-color: $off-white;
+    background-color: styles.$off-white;
 
     .card-wrapper {
       display: flex;
@@ -45,8 +45,8 @@ h2 {
           width: fit-content;
           margin: 0 0 8px auto;
           padding: 6px 24px;
-          background-color: $gray;
-          color: $black;
+          background-color: styles.$gray;
+          color: styles.$black;
           font-size: 14px;
           letter-spacing: 2px;
           border-radius: 20px;

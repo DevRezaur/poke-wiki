@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-top-banner',
   templateUrl: './top-banner.component.html',
   styleUrl: './top-banner.component.scss',

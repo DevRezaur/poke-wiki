@@ -1,8 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
-import { SharedDataService } from '../../services/shared-data.service';
 import { Subscription } from 'rxjs';
+import { SharedDataService } from '../../services/shared-data.service';
 
 @Component({
+  standalone: false,
   selector: 'app-details-page',
   templateUrl: './details-page.component.html',
   styleUrl: './details-page.component.scss',

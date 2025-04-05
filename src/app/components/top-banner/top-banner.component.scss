@@ -1,4 +1,4 @@
-@import "../../../styles.scss";
+@use "../../../styles";
 
 .top-banner {
   height: 350px;
@@ -6,8 +6,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: $primary;
-  color: $white;
+  background-color: styles.$primary;
+  color: styles.$white;
 
   h1 {
     margin-top: 20px;
@@ -42,11 +42,11 @@
       height: 30px;
       width: 120px;
       letter-spacing: 2px;
-      background-color: $accent-1;
-      color: $black;
+      background-color: styles.$accent-1;
+      color: styles.$black;
 
       &:hover {
-        background-color: $white;
+        background-color: styles.$white;
       }
     }
 
