@@ -10,7 +10,7 @@ export class PokeApiService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getPokemonDetails(pageNo: number): Observable<any> {
+  fetchPokemonListWithDetails(pageNo: number): Observable<any> {
     const url = `${this.baseUrl}?offset=${pageNo * 20}&limit=20`;
 
     return this.fetchPokemonList(url).pipe(
@@ -28,12 +28,12 @@ export class PokeApiService {
     return this.httpClient.get<any>(url);
   }
 
+  fetchIndividualPokemonDetailsByUrl(url: string): Observable<any> {
+    return this.httpClient.get<any>(url);
+  }
+
   fetchIndividualPokemonDetailsByName(name: string): Observable<any> {
     const url = `${this.baseUrl}/${name}`;
     return this.fetchIndividualPokemonDetailsByUrl(url);
-  }
-
-  fetchIndividualPokemonDetailsByUrl(url: string): Observable<any> {
-    return this.httpClient.get<any>(url);
   }
 }

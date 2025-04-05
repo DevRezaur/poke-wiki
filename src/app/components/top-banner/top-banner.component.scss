@@ -14,6 +14,11 @@
     margin-bottom: 8px;
     font-size: 40px;
     letter-spacing: 8px;
+
+    &:hover {
+      cursor: pointer;
+      color: styles.$accent-1;
+    }
   }
 
   h3 {

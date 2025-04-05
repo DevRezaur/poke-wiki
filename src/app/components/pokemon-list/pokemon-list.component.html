@@ -1,7 +1,7 @@
 <div class="section">
   <h2>All Pokemons</h2>
   <div class="grid-wrapper">
-    <div class="card shadow" *ngFor="let pokemon of pokemonDetails">
+    <div class="card shadow" *ngFor="let pokemon of pokemonList">
       <div class="card-wrapper">
         <div class="image">
           <img [src]="pokemon.sprites.other.dream_world.front_default" alt="" />
@@ -13,10 +13,12 @@
           </div>
         </div>
       </div>
-      <button class="button" (click)="viewDetails(pokemon)">See Details</button>
+      <button class="button" (click)="viewPokemonDetails(pokemon)">
+        See Details
+      </button>
     </div>
   </div>
-  <div class="button-wrapper">
+  <div class="button-wrapper" *ngIf="pokemonList.length > 1">
     <button
       class="button"
       [disabled]="currentPageNo == 0"

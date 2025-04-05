@@ -10,47 +10,40 @@ import { SharedDataService } from '../../services/shared-data.service';
   styleUrl: './pokemon-list.component.scss',
 })
 export class PokemonListComponent implements OnInit {
-  currentPageNo: number;
-  pokemonDetails: any[];
+  currentPageNo: number = 0;
+  pokemonList: any[] = [];
 
   constructor(
     private pokeApiService: PokeApiService,
     private sharedDataService: SharedDataService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-    this.currentPageNo = 0;
-    this.pokemonDetails = [];
-  }
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((params: any) => {
       if (params.has('pokemon')) {
-        this.loadSinglePokemonDetails(params.get('pokemon'));
+        const pokemonName = params.get('pokemon');
+        this.loadSinglePokemonDetails(pokemonName);
       } else {
-        this.setCurrentPageNo(params);
+        this.currentPageNo = params.get('page') ?? 0;
         this.loadAllPokemonDetails();
       }
     });
   }
 
-  setCurrentPageNo(params: any): void {
-    this.currentPageNo = params.has('page') ? params.get('page') : 0;
-  }
-
   loadSinglePokemonDetails(name: string) {
-    this.pokeApiService.fetchIndividualPokemonDetailsByName(name).subscribe({
-      next: (result) =>
-        this.pokemonDetails.splice(0, this.pokemonDetails.length, result),
-      error: (error) => console.error(error),
-    });
+    this.pokeApiService
+      .fetchIndividualPokemonDetailsByName(name)
+      .subscribe((result) =>
+        this.pokemonList.splice(0, this.pokemonList.length, result)
+      );
   }
 
   loadAllPokemonDetails(): void {
-    this.pokeApiService.getPokemonDetails(this.currentPageNo).subscribe({
-      next: (result) => (this.pokemonDetails = result),
-      error: (error) => console.error(error),
-    });
+    this.pokeApiService
+      .fetchPokemonListWithDetails(this.currentPageNo)
+      .subscribe((result) => (this.pokemonList = result));
   }
 
   loadPreviousPage(): void {
@@ -65,8 +58,8 @@ export class PokemonListComponent implements OnInit {
     });
   }
 
-  viewDetails(pokemon: any): void {
-    this.sharedDataService.sendData(pokemon);
+  viewPokemonDetails(pokemon: any): void {
+    this.sharedDataService.saveData(pokemon);
     this.router.navigate(['/pokemon-details']);
   }
 }

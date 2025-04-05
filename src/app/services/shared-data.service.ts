@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SharedDataService {
   private dataSubject = new BehaviorSubject<any>(null);
-  data$ = this.dataSubject.asObservable();
 
   constructor() {
     const storedData = localStorage.getItem('sharedData');
@@ -15,8 +14,12 @@ export class SharedDataService {
     }
   }
 
-  sendData(data: any) {
+  saveData(data: any) {
     this.dataSubject.next(data);
     localStorage.setItem('sharedData', JSON.stringify(data));
+  }
+
+  getData(): Observable<any> {
+    return this.dataSubject.asObservable();
   }
 }

@@ -13,9 +13,9 @@ export class DetailsPageComponent implements OnDestroy {
   subscription: Subscription;
 
   constructor(private sharedDataService: SharedDataService) {
-    this.subscription = this.sharedDataService.data$.subscribe(
-      (data) => (this.pokemon = data)
-    );
+    this.subscription = this.sharedDataService
+      .getData()
+      .subscribe((data) => (this.pokemon = data));
   }
 
   ngOnDestroy() {
